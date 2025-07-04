@@ -10,7 +10,7 @@ const verifyToken = require("../middleware/auth.middleware");
 //Routes
 router.post("/register", registerUser);
 router.post("/login", loginUser);
-router.get("/:id", getUserById);
 //Protected Route
 router.get('/profile',verifyToken,getUserProfile);
+router.get("/:id", getUserById);
 module.exports=router;

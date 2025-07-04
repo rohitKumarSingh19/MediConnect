@@ -1,24 +1,31 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { getToken, logout } from "../utils/auth";
 import { useState } from "react";
+
 export default function Navbar() {
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const token = getToken();
+
   const handleLogout = () => {
     logout();
     navigate("/login");
   };
 
+  const linkClass = ({ isActive }) =>
+    `block md:inline px-3 py-1 rounded-md ${
+      isActive ? "bg-white text-blue-600 font-semibold" : "text-white hover:bg-blue-500"
+    }`;
+
   return (
-    <nav className="bg-blue-600 text-white shadow-md">
+    <nav className="bg-blue-600 shadow-md">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
-        <Link to="/" className="text-xl font-bold">
+        <NavLink to="/" className="text-xl font-bold text-white">
           MediConnect
-        </Link>
+        </NavLink>
 
         <button
-          className="md:hidden block focus:outline-none"
+          className="md:hidden block text-white text-xl"
           onClick={() => setIsOpen(!isOpen)}
         >
           ☰
@@ -27,29 +34,29 @@ export default function Navbar() {
         <div
           className={`${
             isOpen ? "block" : "hidden"
-          } md:flex md:items-center gap-6`}
+          } md:flex md:items-center gap-4`}
         >
-          <Link to="/" className="block md:inline hover:text-gray-200">
+          <NavLink to="/" className={linkClass}>
             Home
-          </Link>
+          </NavLink>
           {!token && (
             <>
-              <Link to="/register" className="block md:inline hover:text-gray-200">
+              <NavLink to="/register" className={linkClass}>
                 Register
-              </Link>
-              <Link to="/login" className="block md:inline hover:text-gray-200">
+              </NavLink>
+              <NavLink to="/login" className={linkClass}>
                 Login
-              </Link>
+              </NavLink>
             </>
           )}
           {token && (
             <>
-              <Link to="/profile" className="block md:inline hover:text-gray-200">
+              <NavLink to="/profile" className={linkClass}>
                 Profile
-              </Link>
+              </NavLink>
               <button
                 onClick={handleLogout}
-                className="block md:inline hover:text-gray-200"
+                className="block md:inline px-3 py-1 text-white hover:bg-blue-500 rounded-md"
               >
                 Logout
               </button>

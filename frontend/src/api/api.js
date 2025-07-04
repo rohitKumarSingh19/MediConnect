@@ -1,10 +1,23 @@
 import axios from 'axios';
-const API=axios.create({
-    baseURL:'http://localhost:5000/api',//change to your deployed backend if needed
+import { getToken } from '../utils/auth'; // ✅ import getToken
+
+const API = axios.create({
+  baseURL: 'http://localhost:5000/api',
 });
-API.interceptors.request.use((req)=>{
-    const token=localStorage.getItem('token');
-    if(token) req.headers.Authorization=`Bearer ${token}`
-    return req;
-})
+
+// ✅ Add the token properly
+API.interceptors.request.use(
+  (config) => {
+    const token = getToken();
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+      console.log("✅ Token added to header:", token); // debug log
+    } else {
+      console.log("🚫 No token found in localStorage.");
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 export default API;

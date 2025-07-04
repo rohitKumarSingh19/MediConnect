@@ -47,7 +47,8 @@ exports.loginUser = async (req, res) => {
 // GET user by ID
 exports.getUserById = async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
+    // const user = await User.findById(req.params.id);
+    const user = await User.findById(req.user.id);
     if (!user)
       return res.status(404).json({ message: "User not found" });
 
@@ -58,11 +59,13 @@ exports.getUserById = async (req, res) => {
 };
 exports.getUserProfile = async (req, res) => {
   try {
+     console.log("🔍 Incoming decoded user object:", req.user); //
     const user = await User.findById(req.user.id); // `req.user` comes from decoded JWT
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.status(200).json(user);
   } catch (error) {
+    console.log("❌ Error in getUserProfile:", error.message); // <--- Add this
     res.status(500).json({ message: error.message });
   }
 };

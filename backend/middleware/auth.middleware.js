@@ -5,8 +5,10 @@ const verifyToken=(req,res,next)=>{
     try{
         const decoded=jwt.verify(token,process.env.JWT_SECRET);
         req.user=decoded;
+         console.log("Decoded JWT:", decoded); // ADD THIS
         next();
     }catch(error){
+        console.log('❌ Token verification failed:', error.message);
         res.status(401).json({message:"Token is not valid"})
     }
 };
