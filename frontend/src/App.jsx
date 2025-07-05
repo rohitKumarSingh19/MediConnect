@@ -5,6 +5,9 @@ import Profile from "./pages/Profile";
 import Home from "./pages/Home";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Navbar from "./components/Navbar";
+import DoctorList from "./components/DoctorList";
+import DoctorDashboard from "./components/DoctorDashboard";
+import DoctorProfileCreate from "./pages/DoctorProfileCreate";
 function App() {
   return (
     <BrowserRouter>
@@ -13,6 +16,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/doctors" element={<DoctorList />} />
+        <Route path="/create-doctor-profile" element={<DoctorProfileCreate />} />
+        <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
         <Route
           path="/profile"
           element={

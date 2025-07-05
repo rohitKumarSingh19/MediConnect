@@ -8,10 +8,10 @@ const API = axios.create({
 // ✅ Add the token properly
 API.interceptors.request.use(
   (config) => {
-    const token = getToken();
+     const token = getToken();
+    //const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
-      console.log("✅ Token added to header:", token); // debug log
     } else {
       console.log("🚫 No token found in localStorage.");
     }

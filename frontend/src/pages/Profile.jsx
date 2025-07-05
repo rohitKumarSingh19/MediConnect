@@ -5,12 +5,12 @@ export default function Profile() {
   const [profile, setProfile] = useState(null);
 
  useEffect(() => {
-  const token = localStorage.getItem("token");
-  console.log("🔐 Token in localStorage:", token);
+  // const token = localStorage.getItem("token");
+  // console.log("🔐 Token in localStorage:", token);
 
   API.get("/users/profile")
     .then((res) => {
-      console.log("✅ Profile fetched:", res.data);
+      //console.log("✅ Profile fetched:", res.data);
       setProfile(res.data);
     })
     .catch((err) => {

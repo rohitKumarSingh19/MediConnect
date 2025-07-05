@@ -40,6 +40,7 @@ exports.loginUser = async (req, res) => {
     });
 
     res.status(200).json({ message: "Login successful", token, user });
+    
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -59,13 +60,12 @@ exports.getUserById = async (req, res) => {
 };
 exports.getUserProfile = async (req, res) => {
   try {
-     console.log("🔍 Incoming decoded user object:", req.user); //
+     //console.log("🔍 Incoming decoded user object:", req.user); //
     const user = await User.findById(req.user.id); // `req.user` comes from decoded JWT
     if (!user) return res.status(404).json({ message: "User not found" });
 
     res.status(200).json(user);
   } catch (error) {
-    console.log("❌ Error in getUserProfile:", error.message); // <--- Add this
     res.status(500).json({ message: error.message });
   }
 };

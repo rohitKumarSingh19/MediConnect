@@ -13,7 +13,15 @@ export default function Login() {
       const res = await API.post("/users/login", form);
       saveToken(res.data.token);
       alert("Login successful");
-      navigate("/profile");
+      //redirect based on role
+      const userRole=res.data.user.role;
+      if(userRole=='doctor'){
+        navigate("/doctor-dashboard");
+      }
+      else{
+        navigate("/profile")
+      }
+      // navigate("/profile");
     } catch (err) {
       alert(err.response?.data?.message || "Login failed");
     }
@@ -30,6 +38,7 @@ export default function Login() {
         <input
           type="email"
           placeholder="Email"
+          autoComplete="email"
           value={form.email}
           onChange={(e) => setForm({ ...form, email: e.target.value })}
           required
@@ -38,6 +47,7 @@ export default function Login() {
 
         <input
           type="password"
+          autoComplete="current-password"
           placeholder="Password"
           value={form.password}
           onChange={(e) => setForm({ ...form, password: e.target.value })}
