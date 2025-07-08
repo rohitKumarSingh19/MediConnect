@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 const verifyToken = require("../middleware/auth.middleware");
 const checkRole = require("../middleware/role.middleware");
-const doctorController = require("../controller/doctor.controller");
+//const doctorController = require("../controller/doctor.controller");
 const authenticate = require("../middleware/auth.middleware");
 const {
   createOrUpdateProfile,

@@ -57,13 +57,14 @@ exports.getAllDoctors = async (req, res) => {
 
 // Add a new available time slot
 exports.addSlot = async (req, res) => {
+  // console.log("📥 Slot request body:", req.body);
+  // console.log("👤 Doctor user ID from token:", req.user?.id);
   const { start, end } = req.body;
-   console.log("📥 Slot request body:", req.body);//debug
   try {
     const doctor = await DoctorProfile.findOne({ user: req.user.id });
-    console.log("❌ Doctor not found for user:", req.user.id);//debug
     if (!doctor) return res.status(404).json({ message: "Doctor profile not found" });
-    doctor.availableSlots.push({ start, end });
+     console.log("❌ Doctor not found for user:", req.user.id);
+    doctor.availableSlots.push({ start:req.body.start, end:req.body.end });
     await doctor.save();
       console.log("✅ Slot added successfully");
     res.status(200).json({ message: "Slot added", slots: doctor.availableSlots });
