@@ -3,7 +3,8 @@ import { getToken } from '../utils/auth'; // ✅ import getToken
 
 const API = axios.create({
   // baseURL: 'https://medi-connect-e4tr.vercel.app',
-  baseURL:'http://localhost:5000/api'
+  // baseURL:'http://localhost:5000/api'
+  baseURL:'https://mediconnect-backend1-ykq1.onrender.com/api'
 });
 
 // ✅ Add the token properly
