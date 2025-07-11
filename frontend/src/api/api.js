@@ -2,8 +2,8 @@ import axios from 'axios';
 import { getToken } from '../utils/auth'; // ✅ import getToken
 
 const API = axios.create({
-   baseURL:'http://localhost:5000/api'
-  //baseURL:'https://mediconnect-backend1-ykq1.onrender.com/api'
+  // baseURL:'http://localhost:5000/api'
+  baseURL:'https://mediconnect-backend-4.onrender.com/api'
 });
 
 // ✅ Add the token properly
