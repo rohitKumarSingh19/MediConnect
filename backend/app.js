@@ -10,3 +10,4 @@ app.use(express.json())
 app.use('/api/users',userRoutes);
 app.use('/api/doctors',doctorRoutes);
 module.exports=app;
+
