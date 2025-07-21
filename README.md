@@ -1,5 +1,8 @@
 # 🩺 MediConnect
 
+Client- https://admirable-kheer-300fa0.netlify.app/
+Backend-https://mediconnect-backend1-ykq1.onrender.com/
+
 **MediConnect** is a full-stack doctor appointment and slot booking platform that allows users to browse available doctors and book appointments, while enabling doctors to manage their profiles and time slots.
 
 ---
